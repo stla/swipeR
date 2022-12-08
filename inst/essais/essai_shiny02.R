@@ -4,19 +4,19 @@ library(ggplot2)
 
 wrapper <- swipeRwrapper(
   div(
-    plotOutput("ggplot1", width = "70%", height = "400px"),
+    plotOutput("ggplot1", width = "75%", height = "400px"),
     align = "center"
   ),
   div(
-    plotOutput("ggplot2", width = "70%", height = "400px"),
+    plotOutput("ggplot2", width = "75%", height = "400px"),
     align = "center"
   ),
   div(
-    plotOutput("ggplot3", width = "70%", height = "400px"),
+    plotOutput("ggplot3", width = "75%", height = "400px"),
     align = "center"
   ),
   div(
-    plotOutput("ggplot4", width = "70%", height = "400px"),
+    plotOutput("ggplot4", width = "75%", height = "400px"),
     align = "center"
   )
 )
@@ -24,10 +24,12 @@ wrapper <- swipeRwrapper(
 ui <- fluidPage(
   tags$head(
     tags$style(HTML(
-      ".shiny-plot-output {border: 2px solid royalblue;}"
+      ".shiny-plot-output {
+          border: 2px solid royalblue;
+      }"
     ))
   ),
-  br(),
+  br(), br(), br(),
   fluidRow(
     column(
       12,

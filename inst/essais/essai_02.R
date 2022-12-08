@@ -13,7 +13,7 @@ wrapper <- swipeRwrapper(
 )
 
 swipeR(
-  wrapper, height = "400px", width = "70%", thumbs = TRUE,
+  wrapper, height = "500px", width = "70%", thumbs = TRUE, thumbsPerView = 4,
   on = list(reachEnd = htmlwidgets::JS("function() {alert('the end');}"))
 )
 
