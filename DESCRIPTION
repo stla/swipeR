@@ -15,5 +15,7 @@ Imports:
     htmltools,
     htmlwidgets,
     shiny
+Suggests:
+    ggplot2
 Encoding: UTF-8
 RoxygenNote: 7.2.2

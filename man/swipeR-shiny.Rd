@@ -4,7 +4,7 @@
 \alias{swipeR-shiny}
 \alias{swipeROutput}
 \alias{renderSwipeR}
-\title{Shiny bindings for swipeR}
+\title{Shiny bindings for swipeR carousels}
 \usage{
 swipeROutput(outputId, width = "100\%", height = "400px")
 
@@ -32,5 +32,5 @@ in a variable}
 }
 \description{
 Output and render functions for using swipeR within Shiny
-applications and interactive Rmd documents.
+  applications.
 }
