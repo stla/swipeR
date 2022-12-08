@@ -1,8 +1,10 @@
-#' Title
+#' @title List of DOM elements for a carousel
+#' @description Enclose a list of DOM elements in a HTML \code{div} element
+#'   to be passed to the \code{\link{swipeR}} function.
 #'
-#' @param ... elements
+#' @param ... HTML elements, one for each slide
 #'
-#' @return xx
+#' @return A \code{shiny.tag} object.
 #' @export
 #' @importFrom htmltools div
 swipeRwrapper <- function(...) {
@@ -17,16 +19,63 @@ swipeRwrapper <- function(...) {
   )
 }
 
-#' <Add Title>
+#' @title HTML widget displaying a carousel
+#' @description Create a HTML widget displaying a carousel.
 #'
-#' <Add Description>
+#' @param wrapper HTML \code{div} element created with \code{\link{swipeRwrapper}}
+#' @param width,height dimensions
+#' @param navigationColor color for the navigation arrows
+#' @param paginationColor color for the pagination bullets
+#' @param bulletsSize size of the pagination bullets
+#' @param id a HTML id for the carousel
+#' @param direction direction of the slide show, \code{"horizontal"} or \code{"vertical"}
+#' @param effect transition effect, can be \code{"slide"}, \code{"fade"},
+#'   \code{"cube"}, \code{"coverflow"}, \code{"flip"}, or \code{"cards"}
+#' @param cubeEffect list of settings for the cube when \code{effect="cube"}
+#' @param initialSlide index of the first slide to be shown
+#' @param loop Boolean, whether to enable the continuous loop mode
+#' @param rewind Boolean; if \code{TRUE}, clicking "next" navigation button
+#'   when on last slide will slide back to the first slide, and clicking "prev"
+#'   navigation button when on first slide will style forward to the last slide
+#' @param slidesPerView number of slides per view
+#' @param spaceBetween distance between slides in pixels
+#' @param speed transition speed in milliseconds
+#' @param scrollbar Boolean, whether to enable a scrollbar for navigation
+#' @param autoplay Boolean, whether to autoplay the slide show
+#' @param thumbs Boolean, whether to display thumbs of the slides
+#' @param thumbsPerView number of thumbs per view
+#' @param thumbsHeight height of the thumbs carousel
+#' @param on named list of event listeners
+#' @param elementId a HTML id for the container
 #'
-#' @import htmlwidgets
-#'
+#' @return A \code{htmlwidget} object.
 #' @export
+#' @importFrom htmlwidgets createWidget
+#'
+#' @examples
+#' library(swipeR)
+#' library(htmltools)
+#'
+#' wrapper <- swipeRwrapper(
+#'   tags$img(src = "https://swiperjs.com/demos/images/nature-1.jpg"),
+#'   tags$img(src = "https://swiperjs.com/demos/images/nature-2.jpg"),
+#'   tags$img(src = "https://swiperjs.com/demos/images/nature-3.jpg"),
+#'   tags$img(src = "https://swiperjs.com/demos/images/nature-4.jpg"),
+#'   tags$img(src = "https://swiperjs.com/demos/images/nature-5.jpg"),
+#'   tags$img(src = "https://swiperjs.com/demos/images/nature-6.jpg"),
+#'   tags$img(src = "https://swiperjs.com/demos/images/nature-7.jpg"),
+#'   tags$img(src = "https://swiperjs.com/demos/images/nature-8.jpg")
+#' )
+#'
+#' swipeR(
+#'   wrapper, height = "400px", width = "70%", thumbs = TRUE,
+#'   on = list(reachEnd = htmlwidgets::JS("function() {alert('the end');}"))
+#' )
 swipeR <- function(
     wrapper, width = "100%", height = "100%",
+    navigationColor = "white", paginationColor = "white", bulletsSize = "8px",
     id = NULL, direction = "horizontal", effect = "slide",
+    cubeEffect = list(shadow = TRUE, slidesShadow = TRUE, shadowOffset = 20, shadowScale = 0.94),
     initialSlide = 1, loop = FALSE, rewind = FALSE,
     slidesPerView = 1, spaceBetween = 30, speed = 300,
     scrollbar = FALSE, autoplay = FALSE,
@@ -35,7 +84,11 @@ swipeR <- function(
     elementId = NULL
 ) {
   x <- list(
-    "html"                = swiperDiv(wrapper, id, width, height, scrollbar),
+    "html"                =
+      swiperDiv(
+        wrapper, id, width, height, scrollbar,
+        navigationColor, paginationColor, bulletsSize
+      ),
     "thumbs"              = if(thumbs) thumbsDiv(wrapper, width, thumbsHeight),
     "thumbsPerView"       = thumbsPerView,
     "direction"           = match.arg(direction, c("horizontal", "vertical")),
@@ -55,12 +108,11 @@ swipeR <- function(
     "on"                  = on
   )
 
-  # create widget
-  htmlwidgets::createWidget(
+  createWidget(
     name = "swipeR",
     x,
-    width = NULL,
-    height = NULL,
+    width = "100%",
+    height = height,
     package = "swipeR",
     elementId = elementId
   )
@@ -72,26 +124,33 @@ swipeR <- function(
 #' applications and interactive Rmd documents.
 #'
 #' @param outputId output variable to read from
-#' @param width,height Must be a valid CSS unit (like \code{'100\%'},
-#'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
-#'   string and have \code{'px'} appended.
-#' @param expr An expression that generates a swipeR
-#' @param env The environment in which to evaluate \code{expr}.
-#' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
-#'   is useful if you want to save an expression in a variable.
+#' @param width,height must be a valid CSS unit (like \code{"100\%"},
+#'   \code{"400px"}, \code{"auto"}) or a number, which will be coerced to a
+#'   string and have \code{"px"} appended
+#' @param expr an expression that generates a \code{\link{swipeR}} carousel
+#' @param env the environment in which to evaluate \code{expr}
+#' @param quoted Boolean, whether \code{expr} is a quoted expression
+#'   (with \code{quote()}); this is useful if you want to save an expression
+#'   in a variable
 #'
 #' @name swipeR-shiny
 #'
+#' @return \code{swipeROutput} returns an output element that can be included
+#'   in a Shiny UI, and \code{renderSwipeR} returns a \code{shiny.render.function}
+#'   object that can be assigned to an output slot in a Shiny server.
+#'
 #' @export
+#' @importFrom htmlwidgets shinyWidgetOutput
 swipeROutput <- function(outputId, width = "100%", height = "400px") {
-  htmlwidgets::shinyWidgetOutput(outputId, "swipeR", width, height, package = "swipeR")
+  shinyWidgetOutput(outputId, "swipeR", width, height, package = "swipeR")
 }
 
 #' @rdname swipeR-shiny
 #' @export
+#' @importFrom htmlwidgets shinyRenderWidget
 renderSwipeR <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) {
+  if(!quoted) {
     expr <- substitute(expr)
   } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, swipeROutput, env, quoted = TRUE)
+  shinyRenderWidget(expr, swipeROutput, env, quoted = TRUE)
 }

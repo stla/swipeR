@@ -2,16 +2,17 @@
 % Please edit documentation in R/swipeR.R
 \name{swipeRwrapper}
 \alias{swipeRwrapper}
-\title{Title}
+\title{List of DOM elements for a carousel}
 \usage{
 swipeRwrapper(...)
 }
 \arguments{
-\item{...}{elements}
+\item{...}{HTML elements, one for each slide}
 }
 \value{
-xx
+A \code{shiny.tag} object.
 }
 \description{
-Title
+Enclose a list of DOM elements in a HTML \code{div} element
+  to be passed to the \code{\link{swipeR}} function.
 }

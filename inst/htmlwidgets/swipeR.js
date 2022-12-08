@@ -27,12 +27,7 @@ HTMLWidgets.widget({
           direction: x.direction,
           effect: x.effect,
           grabCursor: x.effect === "cube" || x.effect === "cards",
-          cubeEffect: {
-            shadow: true,
-            slideShadows: true,
-            shadowOffset: 20,
-            shadowScale: 0.94
-          },
+          cubeEffect: x.cubeEffect,
           initialSlide: x.initialSlide,
           loop: x.loop,
           rewind: x.rewind,

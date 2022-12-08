@@ -1,6 +1,15 @@
 #' @importFrom htmltools renderTags div css validateCssUnit
-swiperDiv <- function(wrapper, id, width, height, scrollbar) {
-  style <- css(width = validateCssUnit(width), height = validateCssUnit(height))
+swiperDiv <- function(
+    wrapper, id, width, height, scrollbar,
+    navigationColor, paginationColor, bulletsSize
+) {
+  style <- css(
+    width = validateCssUnit(width),
+    height = validateCssUnit(height),
+    `--swiper-navigation-color` = navigationColor,
+    `--swiper-pagination-color` = paginationColor,
+    `--swiper-pagination-bullet-size` = validateCssUnit(bulletsSize)
+  )
   if(scrollbar) {
     scrollbarDiv <- div(class = "swiper-scrollbar")
   } else {
@@ -21,7 +30,10 @@ swiperDiv <- function(wrapper, id, width, height, scrollbar) {
 }
 
 thumbsDiv <- function(wrapper, width, height) {
-  style <- css(width = validateCssUnit(width), height = validateCssUnit(height))
+  style <- css(
+    width = validateCssUnit(width),
+    height = validateCssUnit(height)
+  )
   renderTags(
     div(
       class = "swiper swiper-thumbs",

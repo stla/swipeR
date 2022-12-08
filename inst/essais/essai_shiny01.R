@@ -6,8 +6,14 @@ library(htmlwidgets)
 wrapper1 <- swipeRwrapper(
   tags$img(src = "https://swiperjs.com/demos/images/nature-1.jpg"),#, height = "400px"),
   tags$img(src = "https://swiperjs.com/demos/images/nature-2.jpg"),#, height = "400px"),
-  tags$img(src = "https://swiperjs.com/demos/images/nature-1.jpg"),# height = "400px"),
-  tags$img(src = "https://swiperjs.com/demos/images/nature-2.jpg")#, height = "400px")
+  tags$img(src = "https://swiperjs.com/demos/images/nature-3.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-4.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-5.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-6.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-7.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-8.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-9.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-10.jpg")
 )
 
 wrapper <- swipeRwrapper(
@@ -23,7 +29,7 @@ wrapper <- swipeRwrapper(
 )
 
 ui <- fluidPage(
-  #swipeR(wrapper, height = "400px", width = "80%", effect = "cube", speed = 2000, id = "MYSWIPER"),
+  swipeR(wrapper, height = "400px", width = "80%", effect = "cube", speed = 2000, id = "MYSWIPER"),
   swipeR(wrapper1, height = "450px", width = "70%", thumbs = TRUE,
          on = list(slideChange = JS("function(s){alert('s');}")))
 )

@@ -13,16 +13,22 @@ renderSwipeR(expr, env = parent.frame(), quoted = FALSE)
 \arguments{
 \item{outputId}{output variable to read from}
 
-\item{width, height}{Must be a valid CSS unit (like \code{'100\%'},
-\code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
-string and have \code{'px'} appended.}
+\item{width, height}{must be a valid CSS unit (like \code{"100\%"},
+\code{"400px"}, \code{"auto"}) or a number, which will be coerced to a
+string and have \code{"px"} appended}
 
-\item{expr}{An expression that generates a swipeR}
+\item{expr}{an expression that generates a \code{\link{swipeR}} carousel}
 
-\item{env}{The environment in which to evaluate \code{expr}.}
+\item{env}{the environment in which to evaluate \code{expr}}
 
-\item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
-is useful if you want to save an expression in a variable.}
+\item{quoted}{Boolean, whether \code{expr} is a quoted expression
+(with \code{quote()}); this is useful if you want to save an expression
+in a variable}
+}
+\value{
+\code{swipeROutput} returns an output element that can be included
+  in a Shiny UI, and \code{renderSwipeR} returns a \code{shiny.render.function}
+  object that can be assigned to an output slot in a Shiny server.
 }
 \description{
 Output and render functions for using swipeR within Shiny

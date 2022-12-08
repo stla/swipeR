@@ -2,10 +2,106 @@
 % Please edit documentation in R/swipeR.R
 \name{swipeR}
 \alias{swipeR}
-\title{<Add Title>}
+\title{HTML widget displaying a carousel}
 \usage{
-swipeR(wrapper, width = NULL, height = NULL, elementId = NULL)
+swipeR(
+  wrapper,
+  width = "100\%",
+  height = "100\%",
+  navigationColor = "white",
+  paginationColor = "white",
+  bulletsSize = "8px",
+  id = NULL,
+  direction = "horizontal",
+  effect = "slide",
+  cubeEffect = list(shadow = TRUE, slidesShadow = TRUE, shadowOffset = 20, shadowScale =
+    0.94),
+  initialSlide = 1,
+  loop = FALSE,
+  rewind = FALSE,
+  slidesPerView = 1,
+  spaceBetween = 30,
+  speed = 300,
+  scrollbar = FALSE,
+  autoplay = FALSE,
+  thumbs = FALSE,
+  thumbsPerView = 2,
+  thumbsHeight = "60px",
+  on = NULL,
+  elementId = NULL
+)
+}
+\arguments{
+\item{wrapper}{HTML \code{div} element created with \code{\link{swipeRwrapper}}}
+
+\item{width, height}{dimensions}
+
+\item{navigationColor}{color for the navigation arrows}
+
+\item{paginationColor}{color for the pagination bullets}
+
+\item{bulletsSize}{size of the pagination bullets}
+
+\item{id}{a HTML id for the carousel}
+
+\item{direction}{direction of the slide show, \code{"horizontal"} or \code{"vertical"}}
+
+\item{effect}{transition effect, can be \code{"slide"}, \code{"fade"},
+\code{"cube"}, \code{"coverflow"}, \code{"flip"}, or \code{"cards"}}
+
+\item{cubeEffect}{list of settings for the cube when \code{effect="cube"}}
+
+\item{initialSlide}{index of the first slide to be shown}
+
+\item{loop}{Boolean, whether to enable the continuous loop mode}
+
+\item{rewind}{Boolean; if \code{TRUE}, clicking "next" navigation button
+when on last slide will slide back to the first slide, and clicking "prev"
+navigation button when on first slide will style forward to the last slide}
+
+\item{slidesPerView}{number of slides per view}
+
+\item{spaceBetween}{distance between slides in pixels}
+
+\item{speed}{transition speed in milliseconds}
+
+\item{scrollbar}{Boolean, whether to enable a scrollbar for navigation}
+
+\item{autoplay}{Boolean, whether to autoplay the slide show}
+
+\item{thumbs}{Boolean, whether to display thumbs of the slides}
+
+\item{thumbsPerView}{number of thumbs per view}
+
+\item{thumbsHeight}{height of the thumbs carousel}
+
+\item{on}{named list of event listeners}
+
+\item{elementId}{a HTML id for the container}
+}
+\value{
+A \code{htmlwidget} object.
 }
 \description{
-<Add Description>
+Create a HTML widget displaying a carousel.
+}
+\examples{
+library(swipeR)
+library(htmltools)
+
+wrapper <- swipeRwrapper(
+  tags$img(src = "https://swiperjs.com/demos/images/nature-1.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-2.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-3.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-4.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-5.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-6.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-7.jpg"),
+  tags$img(src = "https://swiperjs.com/demos/images/nature-8.jpg")
+)
+
+swipeR(
+  wrapper, height = "400px", width = "70\%", thumbs = TRUE,
+  on = list(reachEnd = htmlwidgets::JS("function() {alert('the end');}"))
+)
 }
