@@ -29,6 +29,7 @@ HTMLWidgets.widget({
           grabCursor: x.effect === "cube" || x.effect === "cards",
           cubeEffect: x.cubeEffect,
           initialSlide: x.initialSlide,
+          zoom: x.zoom,
           loop: x.loop,
           rewind: x.rewind,
           slidesPerView: x.slidesPerView,

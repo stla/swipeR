@@ -33,6 +33,9 @@ swipeRwrapper <- function(...) {
 #'   \code{"cube"}, \code{"coverflow"}, \code{"flip"}, or \code{"cards"}
 #' @param cubeEffect list of settings for the cube when \code{effect="cube"}
 #' @param initialSlide index of the first slide to be shown
+#' @param zoom Boolean, whether to enable the zoom on slide's double tap;
+#'   all zoomable slides must be wrapped in a \code{div} with
+#'   \code{swiper-zoom-container} class
 #' @param loop Boolean, whether to enable the continuous loop mode
 #' @param rewind Boolean; if \code{TRUE}, clicking "next" navigation button
 #'   when on last slide will slide back to the first slide, and clicking "prev"
@@ -168,7 +171,7 @@ swipeR <- function(
     navigationColor = "white", paginationColor = "white", bulletsSize = "8px",
     id = NULL, direction = "horizontal", effect = "slide",
     cubeEffect = list(shadow = TRUE, slidesShadow = TRUE, shadowOffset = 20, shadowScale = 0.94),
-    initialSlide = 1, loop = FALSE, rewind = FALSE,
+    initialSlide = 1, zoom = FALSE, loop = FALSE, rewind = FALSE,
     slidesPerView = 1, spaceBetween = 30, speed = 300,
     scrollbar = FALSE, autoplay = FALSE,
     thumbs = FALSE, thumbsPerView = 2, thumbsHeight = "60px",
@@ -191,6 +194,7 @@ swipeR <- function(
       ),
     "cubeEffect"          = cubeEffect,
     "initialSlide"        = initialSlide - 1,
+    "zoom"                = zoom,
     "loop"                = loop,
     "rewind"              = rewind && !loop,
     "slidesPerView"       = slidesPerView,
