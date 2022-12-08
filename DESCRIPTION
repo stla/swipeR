@@ -3,7 +3,10 @@ Package: swipeR
 Title: Carousels with the 'JavaScript' Library 'Swiper'
 Version: 0.1.0
 Authors@R: 
-    person("Stéphane", "Laurent", , "laurent_step@outlook.fr", role = c("aut", "cre"))
+    c(
+      person("Stéphane", "Laurent", , "laurent_step@outlook.fr", role = c("aut", "cre")),
+      person("Vladimir", "Kharlampidi", role = "cph", comment = "'swiper' library")
+    )
 Description: Create carousels using the 'JavaScript' library 'Swiper' and
     the package 'htmlwidgets'. The carousels can be displayed in the
     'RStudio' viewer pane, in 'Shiny' applications and R markdown
