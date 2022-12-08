@@ -19,7 +19,7 @@ HTMLWidgets.widget({
           };
         }
 
-        var swiper = new Swiper(".swiper", {
+        var opts = {
           direction: x.direction,
           effect: x.effect,
           grabCursor: x.effect === "cube" || x.effect === "cards",
@@ -45,7 +45,14 @@ HTMLWidgets.widget({
             el: ".swiper-pagination",
             clickable: true
           }
-        });
+        };
+
+        if(x.on) {
+          opts.on = x.on;
+        }
+
+        var swiper = new Swiper(el.firstElementChild, opts);
+
       },
 
       resize: function (width, height) {

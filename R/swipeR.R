@@ -29,7 +29,8 @@ swipeR <- function(
     direction = "horizontal", effect = "slide",
     initialSlide = 1, loop = FALSE, rewind = FALSE,
     slidesPerView = 1, spaceBetween = 30, speed = 300,
-    scrollbar = FALSE, autoplay = FALSE
+    scrollbar = FALSE, autoplay = FALSE,
+    on = NULL,
     elementId = NULL
 ) {
   # forward options using x
@@ -48,7 +49,8 @@ swipeR <- function(
     "spaceBetween"        = spaceBetween,
     "speed"               = speed,
     "scrollbar"           = scrollbar,
-    "autoplay"            = autoplay
+    "autoplay"            = autoplay,
+    "on"                  = on
   )
 
   # create widget
