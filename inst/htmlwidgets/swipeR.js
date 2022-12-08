@@ -10,6 +10,10 @@ HTMLWidgets.widget({
       renderValue: function(x) {
         var doc = parser.parseFromString(x.html, "text/html");
         el.innerHTML = doc.body.innerHTML;
+        if(x.thumbs) {
+          var thumbs = parser.parseFromString(x.thumbs, "text/html");
+          el.appendChild(thumbs.body.firstElementChild);
+        }
 
         var scrollbar = false;
         if(x.scrollbar) {
@@ -49,6 +53,15 @@ HTMLWidgets.widget({
 
         if(x.on) {
           opts.on = x.on;
+        }
+
+        if(x.thumbs) {
+          var swiperThumbs = new Swiper(el.lastElementChild, {
+            slidesPerView: x.thumbsPerView,
+            freeMode: true,
+            watchSlidesProgress: true
+          });
+          opts.thumbs = {swiper: swiperThumbs};
         }
 
         var swiper = new Swiper(el.firstElementChild, opts);

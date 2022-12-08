@@ -26,16 +26,18 @@ swipeRwrapper <- function(...) {
 #' @export
 swipeR <- function(
     wrapper, width = "100%", height = "100%",
-    direction = "horizontal", effect = "slide",
+    id = NULL, direction = "horizontal", effect = "slide",
     initialSlide = 1, loop = FALSE, rewind = FALSE,
     slidesPerView = 1, spaceBetween = 30, speed = 300,
     scrollbar = FALSE, autoplay = FALSE,
+    thumbs = FALSE, thumbsPerView = 2, thumbsHeight = "60px",
     on = NULL,
     elementId = NULL
 ) {
-  # forward options using x
   x <- list(
-    "html"                = swiperDiv(wrapper, width, height, scrollbar),
+    "html"                = swiperDiv(wrapper, id, width, height, scrollbar),
+    "thumbs"              = if(thumbs) thumbsDiv(wrapper, width, thumbsHeight),
+    "thumbsPerView"       = thumbsPerView,
     "direction"           = match.arg(direction, c("horizontal", "vertical")),
     "effect"              =
       match.arg(
