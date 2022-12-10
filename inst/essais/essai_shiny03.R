@@ -46,10 +46,17 @@ wrapper <- swipeRwrapper(
             "direction", label = NULL, status = "info",
             choices = c("by row" = "row", "by column" = "column"),
           )
+        ),
+        br(), hr(), br(),
+        actionButton(
+          "btn", "Add slide", class = "btn-primary btn-block",
+          onclick = "document.getElementById('SWIPER').swiper.appendSlide(
+            '<div class=\"swiper-slide rlogo\"></div>');
+            Shiny.setInputValue('newslide', true, {priority: 'event'});"
         )
       )
     ),
-    style = "margin-left: 10%; font-size: 2rem;"
+    style = "margin-left: 10%; margin-right: 10%; font-size: 2rem;"
   ),
   div(
     plotOutput("ggplot", width = "85%", height = "400px"),
@@ -62,6 +69,18 @@ ui <- fluidPage(
     tags$style(HTML(
       ".shiny-plot-output {
           border: 2px solid royalblue;
+      }
+      .shiny-text-output {
+          font-size: 30px;
+          font-style: italic;
+      }
+      .rlogo {
+         width: 100%;
+         height: 100%;
+         background-image: url(https://www.r-project.org/logo/Rlogo.png);
+         background-repeat: no-repeat;
+         background-size: contain;
+         background-position: center;
       }"
     ))
   ),
@@ -70,14 +89,31 @@ ui <- fluidPage(
     column(
       12,
       swipeR(
-        wrapper, height = "450px", width = "90%",
-        navigationColor = "black", paginationColor = "black", rewind = TRUE
+        wrapper, id = "SWIPER", height = "450px", width = "90%",
+        navigationColor = "black", paginationColor = "black", rewind = TRUE,
+        on = list(
+          afterInit = htmlwidgets::JS(
+            "function(swiper) {
+               setTimeout(function(){ Shiny.setInputValue('index', 1); }, 0);
+            }"
+          ),
+          slideChange = htmlwidgets::JS(
+            "function(swiper) {
+               Shiny.setInputValue('index', swiper.activeIndex + 1);
+            }"
+          )
+        )
       )
+    ),
+    column(
+      12,
+      textOutput("slideIndex")
     )
   )
 )
 
 server <- function(input, output, session) {
+
   ggtheme <- reactive({
     size <- input[["slider"]]
     size <- if(is.null(size)) 12 else as.integer(size)
@@ -97,6 +133,7 @@ server <- function(input, output, session) {
       "Wall Street"     = theme_wsj(base_size = size)
     )
   })
+
   output[["ggplot"]] <- renderPlot({
     gg <- ggplot(iris, aes(x = Sepal.Length, y = Petal.Length, color = Species)) +
       geom_point(size = 6) + ggtheme()
@@ -109,6 +146,16 @@ server <- function(input, output, session) {
     }
     gg
   })
+
+  nSlides <- reactiveVal(2)
+  observeEvent(input[["newslide"]], {
+    nSlides(nSlides() + 1)
+  })
+
+  output[["slideIndex"]] <- renderText({
+    paste0(input[["index"]], "/", nSlides())
+  })
+
 }
 
 shinyApp(ui, server)

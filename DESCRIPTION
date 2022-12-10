@@ -19,6 +19,8 @@ Imports:
     htmlwidgets,
     shiny
 Suggests:
-    ggplot2
+    ggplot2,
+    ggthemes,
+    shinyWidgets
 Encoding: UTF-8
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
