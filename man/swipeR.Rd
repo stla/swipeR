@@ -280,6 +280,9 @@ ui <- fluidPage(
           font-size: 30px;
           font-style: italic;
       }
+      .recalculating {
+         display: none; /* otherwise there's a flash */
+      }
       .rlogo {
          width: 100\%;
          height: 100\%;
@@ -295,8 +298,9 @@ ui <- fluidPage(
     column(
       12,
       swipeR(
-        wrapper, id = "SWIPER", height = "450px", width = "90\%",
-        navigationColor = "black", paginationColor = "black", rewind = TRUE,
+        wrapper, id = "SWIPER", effect = "flip", rewind = TRUE,
+        height = "450px", width = "90\%",
+        navigationColor = "black", paginationColor = "black",
         on = list(
           afterInit = htmlwidgets::JS(
             "function(swiper) {
