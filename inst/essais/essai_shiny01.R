@@ -20,7 +20,7 @@ wrapper <- swipeRwrapper(
   div(
     actionButton(
       "btn", "Click me",
-      onclick = "document.getElementById('MYSWIPER').swiper.slideNext();"
+      onclick = "var s = document.getElementById('UUU').swiper; var el = s.el; console.log(el); var opts = s.params; console.log(opts); opts.effect = 'fade'; s.destroy(true, true); var ss = new Swiper(el, opts); "
     ),
     align = "center"
   ),
@@ -30,7 +30,7 @@ wrapper <- swipeRwrapper(
 
 ui <- fluidPage(
   swipeR(wrapper, height = "400px", width = "80%", effect = "cube", speed = 2000, id = "MYSWIPER"),
-  swipeR(wrapper1, height = "450px", width = "70%", thumbs = TRUE,
+  swipeR(wrapper1, height = "450px", width = "70%", thumbs = TRUE, id = "UUU",
          on = list(slideChange = JS("function(s){alert('s');}")))
 )
 

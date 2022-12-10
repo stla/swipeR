@@ -26,7 +26,7 @@ swiperDiv <- function(
       div(class = "swiper-pagination"),
       scrollbarDiv
     )
-  )[["html"]]
+  )
 }
 
 thumbsDiv <- function(wrapper, width, height) {

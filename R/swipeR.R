@@ -178,12 +178,12 @@ swipeR <- function(
     on = NULL,
     elementId = NULL
 ) {
+  tags <- swiperDiv(
+    wrapper, id, width, height, scrollbar,
+    navigationColor, paginationColor, bulletsSize
+  )
   x <- list(
-    "html"                =
-      swiperDiv(
-        wrapper, id, width, height, scrollbar,
-        navigationColor, paginationColor, bulletsSize
-      ),
+    "html"                = tags[["html"]],
     "thumbs"              = if(thumbs) thumbsDiv(wrapper, width, thumbsHeight),
     "thumbsPerView"       = thumbsPerView,
     "direction"           = match.arg(direction, c("horizontal", "vertical")),
@@ -211,7 +211,8 @@ swipeR <- function(
     width = "100%",
     height = height,
     package = "swipeR",
-    elementId = elementId
+    elementId = elementId,
+    dependencies = tags[["dependencies"]]
   )
 }
 
