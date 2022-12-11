@@ -9,11 +9,11 @@ Authors@R:
     )
 Description: Create carousels using the 'JavaScript' library 'Swiper' and
     the package 'htmlwidgets'. The carousels can be displayed in the
-    'RStudio' viewer pane, in 'Shiny' applications and in R markdown
+    'RStudio' viewer pane, in 'Shiny' applications and in 'R markdown'
     documents.
 License: GPL-3
 URL: https://github.com/stla/swipeR
-BugReports: https://github.com/stla/swipeR//issues
+BugReports: https://github.com/stla/swipeR/issues
 Imports: 
     htmltools,
     htmlwidgets,
