@@ -3,3 +3,4 @@
 ^inst/essais$
 ^inst/gifs$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$
