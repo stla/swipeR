@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css" integrity="sha512-NWCafukXClS6fKch6bSMl/WvPzZrD1OGMf1oMAnFYXSSKZ7hgeswls+r4SdK4bFJauVwmvFf7HlMwji2TsjROA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js" integrity="sha512-kZsqvmw94Y8hyhwtWZJvDtobwQ9pLhF1DuIvcqSuracbRn6WJs1Ih+04fpH/8d1CFKysp7XA1tR0Aa2jKLTQUg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css" />
+    <style>
+        .swiper {
+            border: 2px black solid;
+        }
+    </style>
+</head>
+
+<body>
+
+    <label>This slider is outside the carousel and it works:</label>
+    <input type="text" class="js-range-slider" name="myslider1" value=""/>
+
+    <div class="swiper">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <p>Slide 1</p>
+                <label>This slider is inside the carousel and it does not work:</label>
+                <input type="text" class="js-range-slider" name="myslider2" value=""/>
+            </div>
+
+            <div class="swiper-slide">
+                <p>Slide 2</p>
+            </div>
+
+        </div>
+        
+        <div class = "swiper-button-prev"></div>
+        <div class = "swiper-button-next"></div>
+    </div>
+
+    <script>
+        var swiper = new Swiper(".swiper", {
+            effect: "flip",
+            speed: 1000,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            }
+        });
+
+        $(".js-range-slider").ionRangeSlider();
+    </script>
+</body>
+
+</html>
