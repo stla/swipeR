@@ -1,0 +1,27 @@
+---
+title: "Untitled"
+output: html_document
+date: "2023-05-05"
+---
+
+```{r setup, include=FALSE}
+library(plotly)
+library(swipeR)
+library(htmltools)
+```
+
+```{r}
+g1 <- ggplot(mtcars, aes(mpg, wt)) + geom_point() + ggtitle("Plot 1")
+g2 <- ggplot(mtcars, aes(hp, wt)) + geom_point() + ggtitle("Plot 2")
+g3 <- ggplot(mtcars, aes(qsec, wt)) + geom_point() + ggtitle("Plot 3")
+```
+
+```{r}
+wrapper <- swipeRwrapper(
+  tags$div(style = "width: 500px; margin: auto;", ggplotly(g1)),
+  tags$div(style = "width: 500px; margin: auto;", ggplotly(g2)),
+  tags$div(style = "width: 500px; margin: auto;", ggplotly(g3))
+)
+swipeR(wrapper, height = "400px", navigationColor = "navy")
+```
+

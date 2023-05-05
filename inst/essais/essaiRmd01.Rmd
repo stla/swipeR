@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+output: html_document
+date: "2023-05-05"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+library(ggplot2)
+library(swipeR)
+library(htmltools)
+library(base64enc)
+```
+
+```{r}
+g1 <- ggplot(mtcars, aes(mpg, wt)) + geom_point() + ggtitle("Plot 1")
+g2 <- ggplot(mtcars, aes(hp, wt)) + geom_point() + ggtitle("Plot 2")
+g3 <- ggplot(mtcars, aes(qsec, wt)) + geom_point() + ggtitle("Plot 3")
+ggsave("g1.png", g1)
+ggsave("g2.png", g2)
+ggsave("g3.png", g3)
+g1b64 <- dataURI(file = "g1.png", mime = "image/png")
+g2b64 <- dataURI(file = "g2.png", mime = "image/png")
+g3b64 <- dataURI(file = "g3.png", mime = "image/png")
+```
+
+```{r}
+wrapper <- swipeRwrapper(
+  tags$img(src = g1b64, style = "width: 500px; margin: auto;"),
+  tags$img(src = g2b64, style = "width: 500px; margin: auto;"),
+  tags$img(src = g3b64, style = "width: 500px; margin: auto;")
+)
+swipeR(wrapper, height = "400px", navigationColor = "navy")
+```
+
