@@ -1,5 +1,11 @@
 # swipeR
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/stla/swipeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stla/swipeR/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+___
+
 ![](https://raw.githubusercontent.com/stla/swipeR/main/inst/gifs/swipeR-images.gif)
 
 ![](https://raw.githubusercontent.com/stla/swipeR/main/inst/gifs/swipeR-shiny.gif)
