@@ -1,0 +1,4 @@
+Name: Images viewer
+Description: Choose and display image files.
+Binding: swipeRaddin
+Interactive: true
