@@ -19,9 +19,9 @@ swipeRaddin <- function() {
     b64 <- dataURI(file = image, mime = paste0("image/", file_ext(image)))
     divs[[i]] <- div(
       class = "swiper-zoom-container",
-      img(src = b64, style = "height: 90vh; width: 90vw; margin: auto;")
+      img(src = b64, style = "height: auto; width: auto; margin: auto;")
     )
   }
   wrapper <- do.call(swipeRwrapper, divs)
-  swipeR(wrapper, height = "90vh", navigationColor = "red", zoom = TRUE)
+  swipeR(wrapper, height = "400px", navigationColor = "red", zoom = TRUE)
 }

@@ -4,3 +4,4 @@
 ^inst/gifs$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
+^inst/addin$
