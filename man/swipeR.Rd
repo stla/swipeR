@@ -117,19 +117,19 @@ library(ggplot2)
 
 wrapper <- swipeRwrapper(
   div(
-    plotOutput("ggplot1", width = "70\%", height = "400px"),
+    plotOutput("ggplot1", width = "500px", height = "400px"),
     align = "center"
   ),
   div(
-    plotOutput("ggplot2", width = "70\%", height = "400px"),
+    plotOutput("ggplot2", width = "500px", height = "400px"),
     align = "center"
   ),
   div(
-    plotOutput("ggplot3", width = "70\%", height = "400px"),
+    plotOutput("ggplot3", width = "500px", height = "400px"),
     align = "center"
   ),
   div(
-    plotOutput("ggplot4", width = "70\%", height = "400px"),
+    plotOutput("ggplot4", width = "500px", height = "400px"),
     align = "center"
   )
 )
@@ -188,16 +188,16 @@ server <- function(input, output, session) {
   output[["ggplot1"]] <- renderPlot({
     ggplot(mtcars, aes(wt, mpg)) + geom_point() +
       theme(panel.border = element_rect(fill = NA, color = "firebrick"))
-  })
+  }, width = 500, height = 400)
   output[["ggplot2"]] <- renderPlot({
     ggplot(economics, aes(date, unemploy)) + geom_line()
-  })
+  }, width = 500, height = 400)
   output[["ggplot3"]] <- renderPlot({
     ggplot(mpg, aes(class)) + geom_bar()
-  })
+  }, width = 500, height = 400)
   output[["ggplot4"]] <- renderPlot({
     ggplot(mpg, aes(class, hwy)) + geom_boxplot()
-  })
+  }, width = 500, height = 400)
 }
 
 if(interactive()) shinyApp(ui, server)
