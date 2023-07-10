@@ -36,3 +36,7 @@ To include **plotly** graphics in a carousel in R Markdown, you can do:
     )
     swipeR(wrapper, height = "400px", navigationColor = "navy")
     ```
+
+The package also provides a RStudio addin:
+
+![](https://raw.githubusercontent.com/stla/swipeR/main/inst/gifs/swipeRaddin.gif)
