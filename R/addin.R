@@ -6,9 +6,7 @@
 #' @keywords internal
 swipeRaddin <- function() {
   ns <- asNamespace("rChoiceDialogs")
-  if(!isNamespaceLoaded("rChoiceDialogs")) {
-    attachNamespace(ns)
-  }
+  try(attachNamespace(ns), silent = TRUE)
   filters <- rbind(
     c("Image files", "*.png;*.bmp;*.jpeg;*.jpg;*.gif"),
     c("GIF files (*.gif)", "*.gif"),
