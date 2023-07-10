@@ -1,10 +1,10 @@
 dependencies:
 - name: Swiper
-  version: 8.4.5
+  version: 10.0.4
   src: htmlwidgets/libs/swiper
   script: swiper-bundle.min.js
   stylesheet: swiper-bundle.css
 - name: swipeRstyles
-  version: 0.1.0
+  version: 1.0.0
   src: htmlwidgets
   stylesheet: swipeRstyles.css
