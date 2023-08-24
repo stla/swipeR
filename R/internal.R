@@ -18,7 +18,7 @@ swiperDiv <- function(
   renderTags(
     div(
       id = id,
-      class = "swiper",
+      class = "myswiper",
       style = style,
       wrapper,
       div(class = "swiper-button-next"),
@@ -36,7 +36,7 @@ thumbsDiv <- function(wrapper, width, height) {
   )
   renderTags(
     div(
-      class = "swiper swiper-thumbs",
+      class = "myswiper swiper-thumbs",
       style = style,
       wrapper
     )

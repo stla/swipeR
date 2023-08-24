@@ -33,6 +33,7 @@ swipeRwrapper <- function(...) {
 #'   \code{"cube"}, \code{"coverflow"}, \code{"flip"}, or \code{"cards"}
 #' @param cubeEffect list of settings for the cube when \code{effect="cube"}
 #' @param initialSlide index of the first slide to be shown
+#' @param keyboard named list of settings for the keyboard navigation
 #' @param zoom Boolean, whether to enable the zoom on slide's double tap;
 #'   all zoomable slides must be wrapped in a \code{div} with
 #'   \code{swiper-zoom-container} class
@@ -338,8 +339,11 @@ swipeR <- function(
     wrapper, width = "100%", height = "100%",
     navigationColor = "white", paginationColor = "white", bulletsSize = "8px",
     id = NULL, direction = "horizontal", effect = "slide",
-    cubeEffect = list(shadow = TRUE, slidesShadow = TRUE, shadowOffset = 20, shadowScale = 0.94),
-    initialSlide = 1, zoom = FALSE, loop = FALSE, rewind = FALSE,
+    cubeEffect = list(shadow = TRUE, slidesShadow = TRUE, shadowOffset = 20,
+                      shadowScale = 0.94),
+    initialSlide = 1,
+    keyboard = list(enabled = FALSE, onlyInViewport = TRUE, pageUpDown = TRUE),
+    zoom = FALSE, loop = FALSE, rewind = FALSE,
     slidesPerView = 1, spaceBetween = 30, speed = 300,
     scrollbar = FALSE, autoplay = FALSE,
     thumbs = FALSE, thumbsPerView = 2, thumbsHeight = "60px",
@@ -362,6 +366,7 @@ swipeR <- function(
       ),
     "cubeEffect"          = cubeEffect,
     "initialSlide"        = initialSlide - 1,
+    "keyboard"            = keyboard,
     "zoom"                = zoom,
     "loop"                = loop,
     "rewind"              = rewind && !loop,

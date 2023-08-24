@@ -17,6 +17,7 @@ swipeR(
   cubeEffect = list(shadow = TRUE, slidesShadow = TRUE, shadowOffset = 20, shadowScale =
     0.94),
   initialSlide = 1,
+  keyboard = list(enabled = FALSE, onlyInViewport = TRUE, pageUpDown = TRUE),
   zoom = FALSE,
   loop = FALSE,
   rewind = FALSE,
@@ -53,6 +54,8 @@ swipeR(
 \item{cubeEffect}{list of settings for the cube when \code{effect="cube"}}
 
 \item{initialSlide}{index of the first slide to be shown}
+
+\item{keyboard}{named list of settings for the keyboard navigation}
 
 \item{zoom}{Boolean, whether to enable the zoom on slide's double tap;
 all zoomable slides must be wrapped in a \code{div} with

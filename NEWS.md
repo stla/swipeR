@@ -1,3 +1,8 @@
+# swiper 1.1.0
+
+- Added keyboard control.
+
+
 # swipeR 1.0.0
  
 - RStudio addin to choose and display image files in the viewer pane.

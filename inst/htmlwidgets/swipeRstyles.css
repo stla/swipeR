@@ -10,7 +10,7 @@
   object-fit: cover;
 }
 
-.swiper {
+.myswiper {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -21,7 +21,7 @@
   position: relative;
 }
 
-.swiper.swiper-thumbs {
+.myswiper.swiper-thumbs {
   position: absolute;
   left: 50%;
   top: 100%;
@@ -30,11 +30,11 @@
   padding: 5px 0;
 }
 
-.swiper.swiper-thumbs .swiper-slide {
+.myswiper.swiper-thumbs .swiper-slide {
   height: 100%;
   opacity: 0.4;
 }
 
-.swiper.swiper-thumbs .swiper-slide-thumb-active {
+.myswiper.swiper-thumbs .swiper-slide-thumb-active {
   opacity: 1;
 }
