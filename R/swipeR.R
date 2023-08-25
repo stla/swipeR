@@ -33,7 +33,9 @@ swipeRwrapper <- function(...) {
 #'   \code{"cube"}, \code{"coverflow"}, \code{"flip"}, or \code{"cards"}
 #' @param cubeEffect list of settings for the cube when \code{effect="cube"}
 #' @param initialSlide index of the first slide to be shown
-#' @param keyboard named list of settings for the keyboard navigation
+#' @param keyboard named list of settings for the keyboard navigation, or just
+#'   \code{TRUE} to enable the keyboard navigation with the default options,
+#'   or \code{FALSE} to disable the keyboard navigation
 #' @param zoom Boolean, whether to enable the zoom on slide's double tap;
 #'   all zoomable slides must be wrapped in a \code{div} with
 #'   \code{swiper-zoom-container} class
@@ -72,7 +74,7 @@ swipeRwrapper <- function(...) {
 #' )
 #'
 #' swipeR(
-#'   wrapper, height = "400px", width = "70%", thumbs = TRUE,
+#'   wrapper, height = "400px", width = "70%", thumbs = TRUE, keyboard = TRUE,
 #'   on = list(reachEnd = htmlwidgets::JS("function() {alert('the end');}"))
 #' )
 #'
@@ -354,6 +356,11 @@ swipeR <- function(
     wrapper, id, width, height, scrollbar,
     navigationColor, paginationColor, bulletsSize
   )
+  if(isTRUE(keyboard)) {
+    keyboard <- list(enabled = TRUE, onlyInViewport = TRUE, pageUpDown = TRUE)
+  } else if(isFALSE(keyboard)) {
+    keyboard <- list(enabled = FALSE, onlyInViewport = TRUE, pageUpDown = TRUE)
+  }
   x <- list(
     "html"                = tags[["html"]],
     "thumbs"              = if(thumbs) thumbsDiv(wrapper, width, thumbsHeight),

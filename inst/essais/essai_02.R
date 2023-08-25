@@ -14,7 +14,7 @@ wrapper <- swipeRwrapper(
 
 swipeR(
   wrapper, height = "500px", width = "70%", thumbs = TRUE, thumbsPerView = 4,
-  keyboard = list(enabled = TRUE, onlyInViewport = TRUE, pageUpDown = TRUE),
+  keyboard = TRUE,
   on = list(reachEnd = htmlwidgets::JS("function() {alert('the end');}"))
 )
 
