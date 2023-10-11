@@ -37,7 +37,7 @@ wrapper <- swipeRwrapper(
             value = 12, min = 10, max = 20
           )
         ),
-        tags$output("12", style = "font-weight: bold; color: blue"),
+        #tags$output("12", style = "font-weight: bold; color: blue"),
         br(), hr(), br(),
         materialSwitch("facets", "Facets?", status = "info"),
         conditionalPanel(

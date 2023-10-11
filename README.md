@@ -12,7 +12,20 @@ ___
 
 ![](https://raw.githubusercontent.com/stla/swipeR/main/inst/gifs/swipeR-shiny2.gif)
 
-To include an image in a carousel from a file, you can use **base64** encoding:
+I finally found a way to make the Shiny slider work in the carousel. One has 
+to include it in a `div` with the class `swiper-no-swiping`:
+
+```r
+        tags$div(
+          class = "swiper-no-swiping",
+          sliderInput(
+            inputId = "slider", label = "Base font size:",
+            value = 12, min = 10, max = 20
+          )
+        )
+```
+
+- To include an image in a carousel from a file, you can use **base64** encoding:
 
     ```{r}
     library(swipeR)
@@ -26,7 +39,7 @@ To include an image in a carousel from a file, you can use **base64** encoding:
     swipeR(wrapper, height = "400px", navigationColor = "navy")
     ```
 
-To include **plotly** graphics in a carousel in R Markdown, you can do:
+- To include **plotly** graphics in a carousel in R Markdown, you can do:
 
     ```{r}
     library(swipeR)
@@ -43,6 +56,6 @@ To include **plotly** graphics in a carousel in R Markdown, you can do:
     swipeR(wrapper, height = "400px", navigationColor = "navy")
     ```
 
-The package also provides a RStudio addin:
+- The package also provides a RStudio addin:
 
 ![](https://raw.githubusercontent.com/stla/swipeR/main/inst/gifs/swipeRaddin.gif)
